@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+    <meta>
+        <key>RPCW:TP1</key>
+        <title>
+        TPC1
+        </title>
+        <subtitle>
+        Criação de uma página web estática sobre o nome José.
+        </subtitle>
+        <bdate>
+        17/02/2022
+        </bdate>
+        <edate>
+        18/02/2022
+        </edate>
+        <supervisor>José Carlos Ramalho</supervisor>
+        <uc>Representação e Processamento de Conhecimento na Web (RPCW)</uc>
+    </meta>
+    <workteam>
+        <worker number="PG47031">
+            <name>António Manuel Almeida Pinto Bandeira Santos</name>
+            <email>pg47031@alunos.uminho.pt</email>
+        </worker>
+    </workteam>
+    <abstract>
+        Neste TPC foi pedido o desenvolvimento de uma página estática referente a um tema de uma lista fornecida pelo docente. Neste caso foi escolhido o tema do nome José e trata-se de uma página web humorosa que qualifica alguns Josés.
+    </abstract>
+    <results>
+
+    </results>
+</xml>
