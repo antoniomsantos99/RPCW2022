@@ -11,8 +11,26 @@ for pasta in ["filmes","atores","categorias"]:
 with open("cinemaATP.json",'r',encoding="utf8") as f:
     filmes = json.load(f)
 
+atores = {}
+categorias = {}
+
 for indice in range(len(filmes)):
     filme = filmes[indice]
+
+    #Popular estruturas de dados auxiliares
+    for ator in filme["cast"]:
+        if ator not in atores:
+            atores[ator] = [indice]
+        else:
+            atores[ator].append(indice)
+    
+    for categoria in filme["genres"]:
+        if categoria not in categorias:
+            categorias[categoria] = [indice]
+        else:
+             categorias[categoria].append(indice)
+    
+    #Criação da pagina filme
     with open(f"filmes/f{indice}.html",'w+',encoding="utf8") as f:
         page=f'''<head>
     <title>{filme["title"]}</title>
