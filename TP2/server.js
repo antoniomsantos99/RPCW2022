@@ -6,21 +6,15 @@ http.createServer(function (req, res) {
     var folders = path.substring(start=0,end=path.lastIndexOf("/"))
     var file = path.substring(start=path.lastIndexOf("/")+1)
 
-    var type = "html"
 
-    if(file.match(".+\.css")) type = "css"
     if(folders.includes("filme")) path = "filmes/f" + file + ".html"
-    if(folders.includes("atores")) path +=".html"
-    if(folders.includes("categorias")) path +=".html"
-    if(path == "/filmes" || path == "/filmes/" || path == "/" || path == "") path = "index.html"
+    else if(folders.includes("atores") || folders.includes("categorias")) path +=".html"
+    else if(path == "/filmes" || path == "/filmes/" || path == "/" || path == "") path = "index.html"
     
-    console.log(path)
-    console.log(type)
-    console.log(fs.existsSync(path))
-    fs.readFile(path, function (err, data) {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
+    fs.readFile(decodeURI(path), function (err, data) {
+        res.writeHead(200, { 'Content-Type': 'text/html;charset=utf-8' });
         if (err) {
-            res.write("<p>Erro na leitura de ficheiro...</p>")
+            res.write('<p>Erro na leitura de ficheiro...</p><a href="/">Voltar<a/>')
         }
         else {
             res.write(data)

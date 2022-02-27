@@ -15,10 +15,15 @@
     <resumo>
         <p>Servidor que apresenta uma lista de filmes segundo um dataset</p>
         <p>Cada filme terá uma página onde estarão presentes alguns detalhes sobre o mesmo</p>
+        <p>A página de cada filme é gerada por uma script python e colocada na pasta filmes</p>
+        <p>Como extra também são criadas páginas para cada ator e categoria</p>
+        <p>É gerado também uma página inicial que contêm toda a informação disponivel</p>
 
     </resumo>
     <resultados>
         <resultado><url>cinemaATP.json</url><texto>Dataset</texto></resultado>
-        <resultado><url>/filmes</url><texto>Pasta com a pagina de cada filme</texto></resultado>
+        <resultado><url>HTMLGen.py</url><texto>Script python que cria as paginas necessárias para correr o servidor</texto></resultado>
+        <resultado><url>server.js</url><texto>Servidor que apresenta as paginas geradas pelo script</texto></resultado>
+        <resultado><url>TP2.css</url><texto>Ficheiro CSS que contem alguns parametros para melhorar a aparência das páginas</texto></resultado>
     </resultados>
 </doc>

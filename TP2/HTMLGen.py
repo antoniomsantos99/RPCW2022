@@ -39,13 +39,14 @@ for indice in range(len(filmes)):
         page=f'''<head>
     <title>{filme["title"]}</title>
     <link rel="stylesheet" type="text/css" href="../TP2.css">
+    <meta charset="UTF-8">
  </head>
  <body>
     <div id="container">
         <h1>{filme["title"]} ({filme["year"]})</h2>
        <div>
           <h2>Elenco</h2>
-          <ul class="lista">{"".join([f'{nl}<li class="textos"><a href="../atores/{ator.split(" ")[0]+ator.split(" ")[-1] if ator.count(" ")>0 else ""}">{ator}</a></li>' for ator in filme["cast"] if re.match(pattern,ator)])}
+           <ul class="lista">{"".join([f'{nl}<li class="textos"><a href="../atores/{ator.split(" ")[0]+(ator.split(" ")[-1] if ator.count(" ")>0 else "")}">{ator}</a></li>' for ator in filme["cast"] if re.match(pattern,ator)])}
           </ul>
        </div>
        <div>
@@ -58,12 +59,14 @@ for indice in range(len(filmes)):
  </body>'''
         f.write(page)
 
+#Criação da pagina ator
 for key,value in atores.items():
     names=key.replace('"','').split(" ")
     with open(f'atores/{names[0]}{names[-1] if len(names)>1 else ""}.html',"w+",encoding="utf8") as f:
         page=f'''<head>
     <title>{key}</title>
     <link rel="stylesheet" type="text/css" href="../TP2.css">
+    <meta charset="UTF-8">
     </head>
     <body>
     <div id="container">
@@ -78,12 +81,13 @@ for key,value in atores.items():
     </body>'''
         f.write(page)
 
-
+#Criação da pagina categoria
 for key,value in categorias.items():
     with open(f'categorias/{key.replace(" ","")}.html',"w+",encoding="utf8") as f:
         page=f'''<head>
     <title>{key}</title>
     <link rel="stylesheet" type="text/css" href="../TP2.css">
+    <meta charset="UTF-8">
     </head>
     <body>
     <div id="container">
@@ -101,6 +105,7 @@ for key,value in categorias.items():
         page=f'''<head>
     <title>TPC 2</title>
     <link rel="stylesheet" type="text/css" href="../TP2.css">
+    <meta charset="UTF-8">
     </head>
     <body>
     
@@ -128,14 +133,14 @@ for key,value in categorias.items():
 
         <div>
             <h1><a id="atores">Atores</a></h1>
-            <ul class="lista">{"".join([f'{nl}<li class="textos"><a href="atores/{ator.split(" ")[0]+(ator.split(" ")[-1] if ator.count(" ")>0 else "")}">{ator}</a></li>' for ator in atores.keys() if re.match(pattern,ator)])}
+            <ul class="lista">{"".join([f'{nl}<li class="textos"><a href="atores/{ator.split(" ")[0]+(ator.split(" ")[-1] if ator.count(" ")>0 else "")}">{ator}</a></li>' for ator in sorted(atores.keys()) if re.match(pattern,ator)])}
             </ul>
             <a href="#inicio">Voltar</a>
         </div>
 
         <div>
             <h1><a id="categorias">Categorias</a></h1>
-            <ul class="lista">{"".join([f'{nl}<li class="textos"><a href="../categorias/{categoria.replace(" ","")}">{categoria}</a></li>' for categoria in categorias.keys()])}
+            <ul class="lista">{"".join([f'{nl}<li class="textos"><a href="../categorias/{categoria.replace(" ","")}">{categoria}</a></li>' for categoria in sorted(categorias.keys())])}
             </ul>
             <a href="#inicio">Voltar</a>
         </div>
