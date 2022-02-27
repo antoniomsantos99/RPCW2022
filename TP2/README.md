@@ -9,12 +9,13 @@ Status: In Progress
 
 ## Ex 2
 
-- [ ]  Criar servidor para servir as paginas (formato: localhost:PORTA/filmes/f{indice} )
+- [x]  Criar servidor para servir as paginas (formato: localhost:PORTA/filmes/f{indice} )
 
 ## Ex 3
 
-- [ ]  Criar servidor para servir as paginas (formato: localhost:PORTA/filmes/ que apresenta lista de filmes como hiperligação)
+- [x]  Criar servidor para servir as paginas (formato: localhost:PORTA/filmes/ que apresenta lista de filmes como hiperligação)
 
 ## Ex 4 (opcional)
 
-- [ ]  Tambem servir paginas de atores que apresenta nome e lista de filmes em que participa
+- [x]  Tambem servir paginas de atores que apresenta nome e lista de filmes em que participa
+- [x]  Tambem servir paginas de categorias que apresenta nome e lista de filmes em que incluidos
