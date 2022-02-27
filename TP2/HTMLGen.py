@@ -103,8 +103,9 @@ for key,value in categorias.items():
     <link rel="stylesheet" type="text/css" href="../TP2.css">
     </head>
     <body>
-    <div id="container">
+    
     <h1><a id="inicio">TPC 2</a></h1>
+    <div class="menu">
     <div id="left">
     <h2><a href=#categorias>Categorias</a></h2>
     </div>
