@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doc>
+    <meta>
+        <titulo>TPC 3: Criação de um servidor de páginas web com o uso de um consumidor de API</titulo>
+        <data>2022-03-11</data>
+        <autor>
+            <id>PG47031</id>
+            <nome>António Manuel Almeida Pinto Bandeira Santos</nome>
+        </autor>
+        <uc>
+            <sigla>RPCW2022</sigla>
+            <nome>Representação e Processamento de Conhecimento Web</nome>
+        </uc>
+    </meta>
+    <resumo>
+        <p>Servidor que apresenta informações referentes a uma escola de música segundo um dataset fornecido por um REST API</p>
+        <p>O REST API é hospedado na própria máquina mas responde a uma porta diferente e tem acesso ao dataset com toda a informação necessária</p>
+        <p>O servidor é capaz de apresentar 3 páginas web com a informação detalhada como uma tabela</p>
+
+    </resumo>
+    <resultados>
+        <resultado><url>db.json</url><texto>Dataset</texto></resultado>
+        <resultado><url>TP3.js</url><texto>Servidor capaz de consumir a API REST para apresentar a informação</texto></resultado>
+        <resultado><url>TP3.css</url><texto>Ficheiro CSS que contem alguns parametros para melhorar a aparência das páginas</texto></resultado>
+        <resultado><url>package-lock.json</url><texto>Ficheiro json que apresenta dependecias do servidor</texto></resultado>
+        <resultado><url>/node_modules</url><texto>Pasta com modulos necessarios para a execução do servidor</texto></resultado>
+    </resultados>
+</doc>

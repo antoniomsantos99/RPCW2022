@@ -1,0 +1,66 @@
+body {
+  text-align: center;
+  background-color: #36393F;
+  color: white;
+}
+
+.lista {
+    color: rgb(255, 255, 255);
+    border-bottom-color: #6B8488;
+    width: 500px;
+    margin-left: auto;
+    border: 3px outset;
+    padding: 10px;
+    margin: auto;
+    text-align: center;
+    opacity: 1;
+    background-color: #2F3136;
+}
+
+.imagem {
+    display: block;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    width: 400px;
+    }
+
+.menu {
+      display: flex;                  /* establish flex container */
+      flex-direction: row;            /* default value; can be omitted */
+      flex-wrap: nowrap;              /* default value; can be omitted */
+      justify-content: space-between; /* switched from default (flex-start, see below) */
+    }
+
+ /* unvisited link */
+ a:link {
+  color: rgb(255, 255, 255);
+}
+
+/* visited link */
+a:visited {
+  color: rgb(255, 255, 255);
+}
+
+/* mouse over link */
+a:hover {
+  color: rgb(184, 184, 184);
+}
+
+/* selected link */
+a:active {
+  color: rgb(184, 184, 184);
+} 
+
+#container{width:100%;}
+#left{float:left;width:33%;}
+#right{float:right;width:33%;}
+.center{  margin-left: auto;
+  margin-right: auto;
+  }
+
+table, th, td {
+  border: 1px solid white;
+  border-collapse: collapse;
+}
