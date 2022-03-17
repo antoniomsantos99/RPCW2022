@@ -1,0 +1,14 @@
+{
+  "name": "tp4",
+  "version": "1.0.0",
+  "description": "TPC 4",
+  "main": "server.js",
+  "scripts": {
+    "test": "debug"
+  },
+  "author": "PG47031",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.26.1"
+  }
+}
