@@ -1,31 +1,3 @@
 {
-  "tarefas": [
-    {
-      "id": 1,
-      "dateBeg": "1/1/1111",
-      "dateEnd": "1/1/1111",
-      "assignee": "Tonecas",
-      "task": "Fazer TPC RPCW",
-      "type": "Universidade",
-      "done": true
-    },
-    {
-      "id": 2,
-      "dateBeg": "1/1/1111",
-      "dateEnd": "1/1/1111",
-      "assignee": "Tonecas",
-      "task": "Fazer TPC RPCW",
-      "type": "Universidade",
-      "done": true
-    },
-    {
-      "id": 3,
-      "dateBeg": "1/1/1111",
-      "dateEnd": "1/1/1111",
-      "assignee": "Tonecas",
-      "task": "Fazer TPC RPCW",
-      "type": "Universidade",
-      "done": true
-    }
-  ]
+  "tarefas": []
 }

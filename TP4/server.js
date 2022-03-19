@@ -1,12 +1,17 @@
-const http = require('http')
-const url = require('url')
-const fs = require('fs')
-const axios = require('axios')
+import http from 'http';
+import axios from 'axios';
+import url from 'url';
+import fs from 'fs';
+import {
+	serveStaticResource,
+	getPOSTInfo
+} from './auxiliar.js';
+
 
 async function generateMainPage() {
-    var html
-    await axios.get('http://localhost:3000/tarefas').then((response) => {
-        html = `     
+	var html
+	await axios.get('http://localhost:3000/tarefas').then((response) => {
+		html = `     
     <head>
     <title>TPC 4</title>
     <link rel="stylesheet" type="text/css" href="TP4.css">
@@ -19,6 +24,34 @@ async function generateMainPage() {
 
         <div id="center">
             <h2>TO-DO LIST</h2>
+            <form action="/add/" method="POST">
+            <table>
+            <thead>
+              <tr>
+                <th colspan="4">Adicionar tarefa</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Data Limite</td>
+                <td>Responsável</td>
+                <td>Tarefa</td>
+                <td>Tipo</td>
+              </tr>
+              <tr>
+                <td><input type="date" name="dateEnd"><br></td>
+                <td><input type="text" name="assignee"><br></td>
+                <td><input type="text" name="task"><br></td>
+                <td><input type="text" name="type"><br></td>
+              </tr>
+              <tr>
+            <th colspan="4">
+              <input type="submit" value="Adicionar"/></th>
+              
+            </tr>
+              </tbody>
+              </table>
+              </form>
             <table>
             <thead>
               <tr>
@@ -47,17 +80,17 @@ async function generateMainPage() {
                 <td></td>
               </tr>
 `
-        const done = [];
-        const todo = [];
-        response.data.forEach(tarefa => {
-            if (tarefa.done) done.push(tarefa)
-            else todo.push(tarefa)
-        });
+		const done = [];
+		const todo = [];
+		response.data.forEach(tarefa => {
+			if (tarefa.done) done.push(tarefa)
+			else todo.push(tarefa)
+		});
 
-        for (let i = 0; i < Math.max(done.length, todo.length); i++) {
+		for (let i = 0; i < Math.max(done.length, todo.length); i++) {
 
-            if (i < todo.length)
-                html += `<tr>
+			if (i < todo.length)
+				html += `<tr>
             <td>${todo[i].dateBeg}</td>
             <td>${todo[i].dateEnd}</td>
             <td>${todo[i].assignee}</td>
@@ -68,10 +101,12 @@ async function generateMainPage() {
                 <input type="submit" value="DONE"/>
             </form>
         </td>
-            <td>${todo[i].done}</td>
+<td>            <form action="/delete/${done[i].id}" method="POST">
+            <input type="submit" value="DELETE"/>
+        </form></td>
 `
-            else
-                html += `<tr>
+			else
+				html += `<tr>
         <td></td>
         <td></td>
         <td></td>
@@ -83,8 +118,8 @@ async function generateMainPage() {
 
 
 
-            if (i < done.length)
-                html += `
+			if (i < done.length)
+				html += `
             <td>${done[i].dateBeg}</td>
             <td>${done[i].dateEnd}</td>
             <td>${done[i].assignee}</td>
@@ -95,11 +130,15 @@ async function generateMainPage() {
                     <input type="submit" value="TO-DO"/>
                 </form>
             </td>
-            <td>${done[i].done}</td>
+            <td>
+            <form action="/delete/${done[i].id}" method="POST">
+                <input type="submit" value="DELETE"/>
+            </form>
+        </td>
             </tr>
     `
-            else
-                html += `
+			else
+				html += `
         <td></td>
         <td></td>
         <td></td>
@@ -110,10 +149,10 @@ async function generateMainPage() {
         </tr>
     `
 
-        }
+		}
 
 
-        html += `        
+		html += `        
 </tbody>
 </table>
 </div>
@@ -121,70 +160,122 @@ async function generateMainPage() {
     </div>
     </body>
     `
-    })
-    return html
+	})
+	return html
 }
 
 var myserver = http.createServer(async function(req, res) {
-    var myurl = url.parse(req.url, true)
-    console.log(myurl.pathname)
-    switch (req.method) {
-        case ("GET"):
-            if (myurl.pathname == "/") {
-                generateMainPage().then((html) => {
-                    res.writeHead(200, {
-                        'Content-Type': 'text/html; charset=utf-8'
-                    })
-                    res.write(html)
-                    res.end()
-                })
-                generateMainPage().catch(function(e) {
-                    console.log(e);
-                })
-            } else if (myurl.pathname == "/TP4.css") {
-                fs.readFile("TP4.css", function(err, data) {
-                    res.writeHead(200, {
-                        'Content-Type': 'text/css; charset=utf-8'
-                    })
-                    if (err) {
-                        res.write('<p>Erro na leitura de ficheiro...</p><a href="/">Voltar<a/>')
-                    } else {
-                        res.write(data)
-                    }
-                    res.end()
-                })
-            } else {
-                res.writeHead(200, {
-                    'Content-Type': 'text/html; charset=utf-8'
-                })
-                res.end('<p>Error. Rout not supported: ' + req.url + '</p>')
-            }
-            break;
-        case("POST"):
-            if(/convert\/(.+)/.test(myurl.pathname)){
-                var id = myurl.pathname.match(/convert\/(.+)/)[1]
+	var myurl = url.parse(req.url, true)
+	console.log(myurl.pathname)
+	switch (req.method) {
+		case ("GET"):
+			if (myurl.pathname == "/") {
+				generateMainPage().then((html) => {
+					res.writeHead(200, {
+						'Content-Type': 'text/html; charset=utf-8'
+					})
+					res.write(html)
+					res.end()
+				})
+				generateMainPage().catch(function(e) {
+					console.log(e);
+				})
+			} else if (myurl.pathname == "/TP4.css") {
+				fs.readFile("TP4.css", function(err, data) {
+					res.writeHead(200, {
+						'Content-Type': 'text/css; charset=utf-8'
+					})
+					if (err) {
+						res.write('<p>Erro na leitura de ficheiro...</p><a href="/">Voltar<a/>')
+					} else {
+						res.write(data)
+					}
+					res.end()
+				})
+			} else {
+				res.writeHead(200, {
+					'Content-Type': 'text/html; charset=utf-8'
+				})
+				res.end('<p>Error. Route not supported: ' + req.url + '</p>')
+			}
+			break;
+		case ("POST"):
+			var tokens = myurl.pathname.match(/\/(\w+)\/(.*)/)
+			switch (tokens[1]) {
+				case "convert":
+					await axios.get(`http://localhost:3000/tarefas?id=${tokens[2]}`).then(tarefa => {
 
-                await axios.get(`http://localhost:3000/tarefas?id=${id}`).then(tarefa => {
-                
-                console.log(`http://localhost:3000/tarefas?id=${id}`)
-                tarefa=tarefa.data[0]
-                tarefa["done"] = !tarefa["done"]
+						console.log(`http://localhost:3000/tarefas?id=${tokens[2]}`)
+						tarefa = tarefa.data[0]
+						tarefa["done"] = !tarefa["done"]
 
-                axios.put('http://localhost:3000/tarefas/' + id,tarefa)
-                .then(function (response) {
-                   console.log(response.data)
-                   res.writeHead(301, {'Location': 'http://localhost:4000/'})
-                   res.end()
-                })
-                .catch(function (error) {
-                   console.log(error)
-                   res.writeHead(500, {'Content-Type': 'text/html;charset=utf-8'})
-                   res.write('<p>Erro no PUT: ' + error + "</p>")
-                   res.write('<p><a href="/">Voltar</a></p>')
-                   res.end()
-                })
-            })}
-    }
+						axios.put('http://localhost:3000/tarefas/' + tokens[2], tarefa)
+							.then(function(resp) {
+								console.log(resp)
+								res.writeHead(301, {
+									'Location': 'http://localhost:4000/'
+								})
+								res.end()
+							})
+							.catch(function(error) {
+								console.log(error)
+								res.writeHead(500, {
+									'Content-Type': 'text/html;charset=utf-8'
+								})
+								res.write('<p><a href="/">Voltar</a></p>')
+								res.end()
+							})
+					})
+					break
+				case "delete":
+					await axios.delete(`http://localhost:3000/tarefas/${tokens[2]}`).then(resp => {
+
+							console.log(resp.data)
+							res.writeHead(301, {
+								'Location': 'http://localhost:4000/'
+							})
+							res.end()
+						})
+						.catch(function(error) {
+							console.log(error)
+							res.writeHead(500, {
+								'Content-Type': 'text/html;charset=utf-8'
+							})
+							res.write('<p><a href="/">Voltar</a></p>')
+							res.end()
+						})
+
+					break
+
+				case "add":
+					console.log("Teste")
+					getPOSTInfo(req, result => {
+						console.log(result)
+
+						result['dateBeg'] = new Date().toISOString().slice(0, 10)
+						result['done'] = false
+						axios.post('http://localhost:3000/tarefas', result)
+							.then(resp => {
+								res.writeHead(301, {
+									'Location': 'http://localhost:4000/'
+								})
+								res.end()
+							})
+							.catch(erro => {
+								res.writeHead(500, {
+									'Content-Type': 'text/html;charset=utf-8'
+								})
+								res.write('<p>Erro no POST: ' + erro + "</p>")
+								res.write('<p><a href="/">Voltar</a></p>')
+								res.end()
+							})
+					})
+
+
+
+					break
+			}
+	}
 })
 
 myserver.listen(4000)
