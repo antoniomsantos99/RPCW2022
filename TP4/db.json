@@ -1,3 +1,40 @@
 {
-  "tarefas": []
+  "tarefas": [
+    {
+      "dateEnd": "2022-03-22",
+      "assignee": "António",
+      "task": "Fazer trabalho de casa de RPCW",
+      "type": "Universidade",
+      "dateBeg": "2022-03-15",
+      "done": true,
+      "id": 1
+    },
+    {
+      "dateEnd": "",
+      "assignee": "Gato de Schrödinger",
+      "task": "Estar morto",
+      "type": "Ciência",
+      "dateBeg": "2022-03-21",
+      "done": false,
+      "id": 2
+    },
+    {
+      "dateEnd": "",
+      "assignee": "Gato de Schrödinger",
+      "task": "Não estar morto",
+      "type": "Ciência",
+      "dateBeg": "2022-03-21",
+      "done": false,
+      "id": 3
+    },
+    {
+      "dateEnd": "2022-03-01",
+      "assignee": "IT Team da UM",
+      "task": "Arranjar a Blackboard",
+      "type": "Universidade",
+      "dateBeg": "2022-03-21",
+      "done": false,
+      "id": 4
+    }
+  ]
 }

@@ -3,7 +3,6 @@ import axios from 'axios';
 import url from 'url';
 import fs from 'fs';
 import {
-	serveStaticResource,
 	getPOSTInfo
 } from './auxiliar.js';
 
@@ -42,7 +41,13 @@ async function generateMainPage() {
                 <td><input type="date" name="dateEnd"><br></td>
                 <td><input type="text" name="assignee"><br></td>
                 <td><input type="text" name="task"><br></td>
-                <td><input type="text" name="type"><br></td>
+				<td>
+				<select name="type" id="type">
+				  <option value="Universidade">Universidade</option>
+				  <option value="Ciência">Ciência</option>
+				  <option value="Lazer">Lazer</option>
+				  <option value="Trabalho">Trabalho</option>
+				</select></td>
               </tr>
               <tr>
             <th colspan="4">
@@ -86,18 +91,17 @@ async function generateMainPage() {
 			if (tarefa.done) done.push(tarefa)
 			else todo.push(tarefa)
 		});
-		console.log(todo)
 
 		for (let i = 0; i < Math.max(done.length, todo.length); i++) {
-			console.log(todo.length,done.length)
-			if (i < todo.length)
+			if (i < todo.length){
+				var color = new Date(todo[i].dateEnd)-new Date() ? "red" : "white"
 				html += `<tr>
-            <td>${todo[i].dateBeg}</td>
-            <td>${todo[i].dateEnd}</td>
-            <td>${todo[i].assignee}</td>
-            <td>${todo[i].task}</td>
-            <td>${todo[i].type}</td>
-            <td>
+            <td style="color: ${color};">${todo[i].dateBeg}</td>
+            <td style="color: ${color};">${todo[i].dateEnd}</td>
+            <td style="color: ${color};">${todo[i].assignee}</td>
+            <td style="color: ${color};">${todo[i].task}</td>
+            <td style="color: ${color};">${todo[i].type}</td>
+            <td style="color: ${color};">
             <form action="/convert/${todo[i].id}" method="POST">
                 <input type="submit" value="DONE"/>
             </form>
@@ -105,7 +109,7 @@ async function generateMainPage() {
 <td>            <form action="/delete/${todo[i].id}" method="POST">
             <input type="submit" value="DELETE"/>
         </form></td>
-`
+`}
 			else
 				html += `<tr>
         <td></td>
@@ -205,16 +209,13 @@ var myserver = http.createServer(async function(req, res) {
 			switch (tokens[1]) {
 				case "convert":
 					await axios.get(`http://localhost:3000/tarefas?id=${tokens[2]}`).then(tarefa => {
-
-						console.log(`http://localhost:3000/tarefas?id=${tokens[2]}`)
 						tarefa = tarefa.data[0]
 						tarefa["done"] = !tarefa["done"]
 
 						axios.put('http://localhost:3000/tarefas/' + tokens[2], tarefa)
 							.then(function(resp) {
-								console.log(resp)
 								res.writeHead(301, {
-									'Location': 'http://localhost:4000/'
+									'Location': 'http://localhost:47031/'
 								})
 								res.end()
 							})
@@ -230,10 +231,8 @@ var myserver = http.createServer(async function(req, res) {
 					break
 				case "delete":
 					await axios.delete(`http://localhost:3000/tarefas/${tokens[2]}`).then(resp => {
-
-							console.log(resp.data)
 							res.writeHead(301, {
-								'Location': 'http://localhost:4000/'
+								'Location': 'http://localhost:47031/'
 							})
 							res.end()
 						})
@@ -249,16 +248,14 @@ var myserver = http.createServer(async function(req, res) {
 					break
 
 				case "add":
-					console.log("Teste")
 					getPOSTInfo(req, result => {
-						console.log(result)
 
 						result['dateBeg'] = new Date().toISOString().slice(0, 10)
 						result['done'] = false
 						axios.post('http://localhost:3000/tarefas', result)
 							.then(resp => {
 								res.writeHead(301, {
-									'Location': 'http://localhost:4000/'
+									'Location': 'http://localhost:47031/'
 								})
 								res.end()
 							})
@@ -279,5 +276,5 @@ var myserver = http.createServer(async function(req, res) {
 	}
 })
 
-myserver.listen(4000)
-console.log("Servidor à escuta na porta 4000...")
+myserver.listen(47031)
+console.log("Servidor à escuta na porta 47031...")
