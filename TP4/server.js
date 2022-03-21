@@ -86,9 +86,10 @@ async function generateMainPage() {
 			if (tarefa.done) done.push(tarefa)
 			else todo.push(tarefa)
 		});
+		console.log(todo)
 
 		for (let i = 0; i < Math.max(done.length, todo.length); i++) {
-
+			console.log(todo.length,done.length)
 			if (i < todo.length)
 				html += `<tr>
             <td>${todo[i].dateBeg}</td>
@@ -101,7 +102,7 @@ async function generateMainPage() {
                 <input type="submit" value="DONE"/>
             </form>
         </td>
-<td>            <form action="/delete/${done[i].id}" method="POST">
+<td>            <form action="/delete/${todo[i].id}" method="POST">
             <input type="submit" value="DELETE"/>
         </form></td>
 `
