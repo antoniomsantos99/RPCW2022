@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    h1 Musica com id #{musica.id}
+    p 
+        b Identificador: 
+        span= musica.id
+    p
+        b Nome: 
+        span= musica.tit
+    p 
+        b Artista: 
+        a(href=`/musicas/${musica.musico ? "/artista"+musica.musico:""}`)= musica.musico? musica.musico : "Inexistente"
+    p 
+        b Provincia: 
+        a(href=`/musicas/provincia/${musica.prov}`)= musica.prov? musica.prov : "Inexistente"

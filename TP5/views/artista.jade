@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    h1 Musicas de artista #{artista}
+    table
+        tr 
+            th Identificador 
+            th Nome
+            th Provincia 
+
+        each m in musicas
+            tr
+                td 
+                    a(href="/musicas/"+m.id)= m.id
+                td= m.tit
+                td
+                    a(href=`/musicas/provincia/${m.prov}`)= m.prov 
+

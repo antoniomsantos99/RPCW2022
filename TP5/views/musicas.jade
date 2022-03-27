@@ -1,0 +1,33 @@
+extends layout
+
+block content
+    h1 TPC 5 - António Santos (PG47031)
+    form(action="/musicas", method="post")
+        div
+            label  Musica: 
+            input(type="text", name="tit")
+            label  Artista: 
+            input(type="text", name="musico")
+            label  Provincia: 
+            input(type="text", name="prov")
+            input(type="submit", value="Registar")
+
+
+    h2 Lista de musicas
+    table
+        tr 
+            th Identificador 
+            th Nome
+            th Artista  
+            th Provincia 
+
+        each m in musicas
+            tr
+                td 
+                    a(href="/musicas/"+m.id)= m.id
+                td= m.tit
+                td
+                    a(href=`/musicas/artista/${m.musico}`)= m.musico 
+                td
+                    a(href=`/musicas/provincia/${m.prov}`)= m.prov 
+
