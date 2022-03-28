@@ -10,7 +10,7 @@ block content
         span= musica.tit
     p 
         b Artista: 
-        a(href=`/musicas/${musica.musico ? "/artista"+musica.musico:""}`)= musica.musico? musica.musico : "Inexistente"
+        a(href=`/musicas/${musica.musico ? "artista/"+musica.musico:""}`)= musica.musico? musica.musico : "Inexistente"
     p 
         b Provincia: 
         a(href=`/musicas/provincia/${musica.prov}`)= musica.prov? musica.prov : "Inexistente"
