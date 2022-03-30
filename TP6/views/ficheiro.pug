@@ -1,0 +1,24 @@
+extends layout
+
+block content
+    h2 Ficheiro: #{file.nome}
+    if tipo == 'image'
+        img(src='serve/'+file.id alt='login')
+    else if tipo == 'audio'
+        audio(controls='')
+            source(src='serve/'+file.id type=file.formato)
+            |  Your browser does not support the audio element.
+    else if tipo == 'video'
+        video(controls='' width='320' height='240')
+            source(src='serve/'+file.id type=file.formato)
+            | Your browser does not support the video tag.
+    else
+        a(href='serve/'+file.id)= "Descarregar ficheiro"
+
+
+        
+      
+
+
+
+

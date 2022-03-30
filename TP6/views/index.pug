@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  center
+            h1 TPC 6 - António Santos (PG47031)
+            h2 Lista de ficheiros
+                form(action="/", method="post", enctype="multipart/form-data")
+                  div
+                      label  Ficheiro: 
+                      input(type="file", name="ficheiro")
+                      label  Descrição: 
+                      input(type="text", name="descricao")
+                      input(type="submit", value="Registar")
+                table
+                  tr 
+                      th Ficheiro
+                      th Formato  
+                      th Tamanho 
+                      th Descrição
+                      th
+
+                  each f in files
+                      tr
+                          td 
+                              a(href="/ficheiro/"+f.id)= f.nome
+                          td= f.formato
+                          td= f.tamanho
+                          td= f.descricao
+                          td
+                              form(action='/ficheiro/delete/'+f.id method='POST')
+                                input(type='submit' value='DELETE')
+
+
+
+

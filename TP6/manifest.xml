@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doc>
+    <meta>
+        <titulo>TPC 6: WebApp de transferencia de ficheiros</titulo>
+        <data>2022-03-30</data>
+        <autor>
+            <id>PG47031</id>
+            <nome>António Manuel Almeida Pinto Bandeira Santos</nome>
+        </autor>
+        <uc>
+            <sigla>RPCW2022</sigla>
+            <nome>Representação e Processamento de Conhecimento Web</nome>
+        </uc>
+    </meta>
+    <resumo>
+        <p>Servidor que apresenta informação referente a ficheiros onde a informação está guardada num json-server</p>
+        <p>O utilizador pode apagar, enviar e receber os ficheiros do servidor</p>
+        <p>O utilizador pode ver as imagens,videos ou audios dentro da app</p>
+    </resumo>
+    <resultados>
+        <resultado><url>db.json</url><texto>Dataset</texto></resultado>
+        <resultado><url>app.js</url><texto>Servidor</texto></resultado>
+        <resultado><url>package-lock.json</url><texto>Ficheiro json que apresenta dependecias do servidor</texto></resultado>
+        <resultado><url>package.json</url><texto>Ficheiro json que apresenta dependecias do servidor</texto></resultado>
+        <resultado><url>/node_modules</url><texto>Pasta com modulos necessarios para a execução do servidor</texto></resultado>
+        <resultado><url>/public</url><texto>Pasta com os recursos estaticos necessarios para a execução do servidor</texto></resultado>
+        <resultado><url>/views</url><texto>Pasta com os views necessarios para a execução do servidor</texto></resultado>
+        <resultado><url>/routes</url><texto>Pasta com as rotas necessarias para a execução do servidor</texto></resultado>
+        <resultado><url>/files</url><texto>Pasta com os ficheiros contidos no servidor</texto></resultado>
+    </resultados>
+</doc>
