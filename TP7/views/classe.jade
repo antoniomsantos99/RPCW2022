@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  h1= title
+  h1 Informação sobre classe #{classe.codigo}
+  p #{classe.titulo}
+  p #{classe.descricao}
+
+  if classe.filhos.length > 0
+    h1 Filhos
+    ul(class="lista")
+      each descendente in classe.filhos
+        li 
+          a(href="/classe/"+descendente.codigo)= descendente.codigo
+
+  if classe.nivel == 3
+    h2 Relações
+    ul(class="lista")
+      each relacao in classe.processosRelacionados
+        if relacao.idRel == "eComplementarDe" || relacao.idRel == "eCruzadoCom" || relacao.idRel == "eSuplementoDe" || relacao.idRel == "eSuplementoPara"
+          li 
+            a(href="/classe/"+relacao.codigo)= relacao.codigo
+
+
+  if classe.pai.codigo != undefined
+    a(href="/classe/"+classe.pai.codigo)= "Voltar á classe pai"
+  p
+    a(href="/")= "Voltar á pagina inicial"

@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= "TPC 7 - António Santos (PG47031)"
+  p Welcome to #{title}
+  center
+    table
+      tr 
+        th Codigo
+        th Nome
+
+      each c in classes
+        tr
+            td 
+              a(href="/classe/"+c.codigo)= c.codigo
+            td= c.titulo

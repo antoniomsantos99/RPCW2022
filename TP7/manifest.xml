@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doc>
+    <meta>
+        <titulo>TPC 7: CLAV: Classificação e Avaliação da Informação Pública</titulo>
+        <data>2022-04-12</data>
+        <autor>
+            <id>PG47031</id>
+            <nome>António Manuel Almeida Pinto Bandeira Santos</nome>
+        </autor>
+        <uc>
+            <sigla>RPCW2022</sigla>
+            <nome>Representação e Processamento de Conhecimento Web</nome>
+        </uc>
+    </meta>
+    <resumo>
+        <p>Webapp que extrai informação do CLAV api e a apresenta ao utilizador</p>
+        <p>O utilizador pode ver as diferentes classes presentes na api tal como os seus descendentes e relações casos existam</p>
+
+    </resumo>
+    <resultados>
+        <resultado><url>app.js</url><texto>Webapp</texto></resultado>
+        <resultado><url>package-lock.json</url><texto>Ficheiro json que apresenta dependecias do servidor</texto></resultado>
+        <resultado><url>package.json</url><texto>Ficheiro json que apresenta dependecias do servidor</texto></resultado>
+        <resultado><url>/node_modules</url><texto>Pasta com modulos necessarios para a execução do servidor</texto></resultado>
+        <resultado><url>/public</url><texto>Pasta com os recursos estaticos necessarios para a execução do servidor</texto></resultado>
+        <resultado><url>/views</url><texto>Pasta com os views necessarios para a execução do servidor</texto></resultado>
+        <resultado><url>/routes</url><texto>Pasta com as rotas necessarias para a execução do servidor</texto></resultado>
+    </resultados>
+</doc>
