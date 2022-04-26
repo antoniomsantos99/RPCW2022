@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    h1 TPC 8 - António Santos (PG47031)
+    script(src='/javascripts/jquery-3.5.1.min.js')
+    script(src='/javascripts/myscript.js')
+
+    form
+        textarea(id="Paragrafo", name="paragrafo",placeholder="Inserir paragrafo aqui")
+        p(id="modo") Adicionar
+        input(id="submit", type="submit", value="Submit")
+        input(id="reset", type="reset", value="Reset")
+        
+
+    h2 Parágrafos:
+
+     table(id="Table")
+        tr 
+            th Data
+            th Paragrafo
+            th  
+            th 

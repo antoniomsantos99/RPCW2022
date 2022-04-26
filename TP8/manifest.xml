@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doc>
+    <meta>
+        <titulo>TPC8 - Servidor de paragrafos usando Express, MongoDB e JQuery</titulo>
+        <data>2022-04-24</data>
+        <autor>
+            <id>PG47626</id>
+            <nome>António Manuel Almeida Pinto Bandeira Santos</nome>
+        </autor>
+        <uc>
+            <sigla>RPCW2022</sigla>
+            <nome>Representação e Processamento de Conhecimento Web</nome>
+        </uc>
+    </meta>
+    <resumo>
+        <p>Criação de um servidor capaz de introduzir e manipular paragrafos de texto</p>
+
+    </resumo>
+    <resultados>
+  	<resultado><url>app.js</url><texto>Servidor</texto></resultado>
+        <resultado><url>package-lock.json</url><texto>Ficheiro json que apresenta dependecias do servidor</texto></resultado>
+        <resultado><url>package.json</url><texto>Ficheiro json que apresenta dependecias do servidor</texto></resultado>
+        <resultado><url>/node_modules</url><texto>Pasta com modulos necessarios para a execução do servidor</texto></resultado>
+        <resultado><url>/public</url><texto>Pasta com os recursos estaticos necessarios para a execução do servidor</texto></resultado>
+        <resultado><url>/views</url><texto>Pasta com os views necessarios para a execução do servidor</texto></resultado>
+        <resultado><url>/routes</url><texto>Pasta com as rotas necessarias para a execução do servidor</texto></resultado>
+	<resultado><url>/models</url><texto>Schemas do servidor</texto></resultado>
+        <resultado><url>/controllers</url><texto>Controladores do servidor</texto></resultado>
+        <resultado><url>/bin</url><texto>Codigo de suporte</texto></resultado>
+    </resultados>
+</doc>
