@@ -62,9 +62,9 @@ router.get("/provincia/:prov", function (req, res, next) {
 });
 
 router.post("/", function (req, res, next) {
-  axios.get("http://localhost:3000/musicas?_page=1").then((resposta) => {
+  axios.get("http://localhost:3000/files").then((resposta) => {
     axios
-      .post("http://localhost:3000/musicas", {
+      .post("http://localhost:3000/files", {
         id: parseInt(resposta.headers["x-total-count"]) + 1,
         tit: req.body.tit,
         musico: req.body.musico,
