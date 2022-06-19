@@ -50,7 +50,7 @@ block content
                                             a(href="/recursos/preview/"+recurso.id + "/" + f["_id"]).button.w3-button.w3-large.w3-teal.w3-border.w3-border-white.w3-round-large(onclick=`document.getElementById('${"preview_"+recurso.id}').style.display='block'`) Pré-visualizar
                                 p
                         li
-                            if recurso["classificação"]
+                            if recurso["classificacao"]
                                 -var classifs = recurso["classificacao"].map(function(c){return c.rating;})
                                 -var classif = classifs.reduce((a,b)=> a+b,0)/classifs.length
                                 -var average = classif
